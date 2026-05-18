@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { 
   FaLinkedin, 
@@ -17,6 +17,8 @@ import { generateVCard } from './utils/vcard';
 import './index.css';
 
 function App() {
+  const [lang, setLang] = useState('ko');
+
   const contactInfo = {
     firstName: 'Dukjin',
     lastName: 'Kim',
@@ -33,6 +35,39 @@ function App() {
     github: 'https://github.com/socialkim/'
   };
 
+  const content = {
+    ko: {
+      name: '김덕진 소장',
+      title: 'Director / CEO · IT Communication Research Lab',
+      subtitle: '세종사이버대학교 컴퓨터AI공학과 교수',
+      qrTitle: '연락처 저장하기',
+      qrDesc: '카메라 앱으로 스캔하여 연락처를 추가하세요',
+      downloadBtn: 'vCard 다운로드',
+      toggleBtn: 'EN',
+      links: {
+        Email: '이메일',
+        Website: '웹사이트',
+        Call: '전화'
+      }
+    },
+    en: {
+      name: 'Kim Dukjin',
+      title: 'Director / CEO · IT Communication Research Lab',
+      subtitle: 'Professor, Dept. of Computer & AI, Sejong Cyber Univ.',
+      qrTitle: 'Scan to Save Contact',
+      qrDesc: 'Scan with your camera app to save contact',
+      downloadBtn: 'Download vCard',
+      toggleBtn: 'KR',
+      links: {
+        Email: 'Email',
+        Website: 'Website',
+        Call: 'Call'
+      }
+    }
+  };
+
+  const t = content[lang];
+
   const vCardString = generateVCard(contactInfo);
 
   const handleDownload = () => {
@@ -46,19 +81,27 @@ function App() {
     document.body.removeChild(link);
   };
 
+  const toggleLang = () => {
+    setLang(lang === 'ko' ? 'en' : 'ko');
+  };
+
   const links = [
-    { name: 'Email', icon: <MdEmail />, url: `mailto:${contactInfo.email}` },
-    { name: 'Website', icon: <MdLanguage />, url: contactInfo.url },
+    { name: t.links.Email, icon: <MdEmail />, url: `mailto:${contactInfo.email}` },
+    { name: t.links.Website, icon: <MdLanguage />, url: contactInfo.url },
     { name: 'YouTube', icon: <FaYoutube />, url: contactInfo.youtube },
     { name: 'LinkedIn', icon: <FaLinkedin />, url: contactInfo.linkedin },
     { name: 'Instagram', icon: <FaInstagram />, url: contactInfo.instagram },
     { name: 'Facebook', icon: <FaFacebook />, url: contactInfo.facebook },
     { name: 'GitHub', icon: <FaGithub />, url: contactInfo.github },
-    { name: 'Call', icon: <MdPhone />, url: `tel:${contactInfo.phone}` }
+    { name: t.links.Call, icon: <MdPhone />, url: `tel:${contactInfo.phone}` }
   ];
 
   return (
     <div className="glass-container">
+      <button className="lang-toggle" onClick={toggleLang}>
+        {t.toggleBtn}
+      </button>
+
       <div className="content-z">
         
         {/* Profile Section */}
@@ -66,9 +109,9 @@ function App() {
           <div className="profile-img">KD</div>
         </div>
         
-        <h1 className="name">{contactInfo.fullName}</h1>
-        <h2 className="title">{contactInfo.title} · IT Communication Research Lab</h2>
-        <h3 className="subtitle">세종사이버대학교 컴퓨터AI공학과 교수</h3>
+        <h1 className="name">{t.name}</h1>
+        <h2 className="title">{t.title}</h2>
+        <h3 className="subtitle">{t.subtitle}</h3>
 
         {/* Links Grid */}
         <div className="links-grid">
@@ -82,8 +125,8 @@ function App() {
 
         {/* QR Code Section */}
         <div className="qr-section">
-          <h3 className="qr-title">Scan to Save Contact</h3>
-          <p className="qr-desc">카메라로 스캔하여 연락처를 추가하세요</p>
+          <h3 className="qr-title">{t.qrTitle}</h3>
+          <p className="qr-desc">{t.qrDesc}</p>
           <div className="qr-wrapper">
             <QRCodeSVG 
               value={vCardString} 
@@ -99,7 +142,7 @@ function App() {
         {/* Download Fallback */}
         <button onClick={handleDownload} className="primary-btn">
           <MdFileDownload size={20} />
-          <span>vCard 다운로드</span>
+          <span>{t.downloadBtn}</span>
         </button>
 
       </div>
