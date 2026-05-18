@@ -26,13 +26,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 0;
   overflow-x: hidden;
 }
 
 #root {
   width: 100%;
   max-width: 450px;
+  margin: 2rem 1rem;
 }
 
 /* Glassmorphism Classes */
@@ -42,7 +43,7 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border);
   border-radius: 24px;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
@@ -117,6 +118,73 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Bio Section */
+.bio-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.bio-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.bio-card-title {
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bio-positions {
+  margin-bottom: 1.5rem;
+}
+
+.position-item {
+  margin-bottom: 0.7rem;
+}
+
+.position-item:last-child {
+  margin-bottom: 0;
+}
+
+.position-role {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.position-org {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.bio-about {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.bio-about p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  word-break: keep-all;
+}
+
+.bio-about p:first-child {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+
 /* Links & Buttons */
 .links-grid {
   display: grid;
@@ -187,6 +255,7 @@ body {
 .qr-desc {
   color: #64748b;
   font-size: 0.85rem;
+  word-break: keep-all;
 }
 
 /* Action Button */
