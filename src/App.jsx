@@ -40,6 +40,7 @@ function App() {
       name: '김덕진 소장',
       title: 'Director / CEO · IT Communication Research Lab',
       subtitle: '세종사이버대학교 컴퓨터AI공학과 교수',
+      ioWelcome: 'Google I/O 2026에서 만나 뵙게 되어 반갑습니다! ✨',
       positionsTitle: '현재 직책',
       positions: [
         { role: '대표이사 / 소장', org: '아이티커뮤니케이션연구소 (ITCL)' },
@@ -67,6 +68,7 @@ function App() {
       name: 'Kim Dukjin',
       title: 'Director / CEO · IT Communication Research Lab',
       subtitle: 'Professor, Dept. of Computer & AI, Sejong Cyber Univ.',
+      ioWelcome: 'Great to meet you at Google I/O 2026! ✨',
       positionsTitle: 'Current Positions',
       positions: [
         { role: 'Director / CEO', org: 'IT Communication Research Lab (ITCL)' },
@@ -132,7 +134,15 @@ function App() {
         
         {/* Profile Section */}
         <div className="profile-img-container">
-          <div className="profile-img">KD</div>
+          <img 
+            src="https://images.squarespace-cdn.com/content/v1/6760d3769480c7522c84e22c/7f8c67ee-57c3-41f4-a472-d2decc8fe2be/%EA%B9%80%EB%8D%95%EC%A7%84+%EC%86%8C%EC%9E%A5.png" 
+            alt="Kim Dukjin Profile" 
+            className="profile-img"
+          />
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <div className="io-badge">{t.ioWelcome}</div>
         </div>
         
         <h1 className="name">{t.name}</h1>
